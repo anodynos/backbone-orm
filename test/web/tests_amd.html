@@ -1,19 +1,30 @@
+<!-- runs from _build/test/web -->
 <!DOCTYPE HTML>
 <html>
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
   <title>Backbone-ORM</title>
-  <script type="text/javascript" src="require.js"></script>
+  <script type="text/javascript" src="../../../bower_components/requirejs/require.js"></script>
   <script type="text/javascript">
     require.config({
-        paths: {
-          'underscore': "../../node_modules/underscore/underscore",
-          'backbone': "../../node_modules/backbone/backbone",
-          'moment': "../../node_modules/moment/moment",
-          'inflection': "../../node_modules/inflection/lib/inflection",
-          'stream': "../../stream",
-          'backbone-orm': "../../backbone-orm"
-        }
+      baseUrl: "../",
+      
+      paths: {
+        mocha: "../../bower_components/mocha/mocha",
+        chai: "../../bower_components/chai/chai",
+        'underscore': "../../bower_components/underscore/underscore",
+        'backbone': "../../bower_components/backbone/backbone",
+        'moment': "../../bower_components/moment/moment",
+        'inflection': "../../bower_components/inflection/lib/inflection",
+        'stream': "../../stream",
+        'backbone-orm': "../backbone-orm"
+      },
+
+      shim: {
+        backbone: { deps: ['underscore'], exports: "Backbone"},
+        underscore: { deps: [], exports: "_"},
+        inflection: { deps: [], exports: "inflection"}
+      }
     });
 
     require(['underscore', 'backbone', 'stream', 'backbone-orm'], function(_, Backbone, stream, BackboneORM) {
